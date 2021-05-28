@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     app.openshift.io/vcs-ref: f7580aa1eb6f7176705176e201ecff4de93edafb
-    app.openshift.io/vcs-uri: https://github.com/yliu138/react-next-app
+    app.openshift.io/vcs-uri: https://github.com/kisoongjang/react-next-app
   labels:
     app: kisoong-leo-assignment
     app.kubernetes.io/instance: kisoong-leo-assignment
@@ -31,7 +31,7 @@ spec:
             - name: PROTOCOLS
             - name: LOG_LEVEL
               value: debug
-          image: quay.io/leoliu2011/react-next-app
+          image: quay.io/kisjang/react-next-app
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
