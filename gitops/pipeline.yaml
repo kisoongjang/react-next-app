@@ -13,12 +13,12 @@ spec:
     - name: image-repo
       type: string
       description: Docker image name
-      default: quay.io/leoliu2011/react-next-app
+      default: quay.io/kisjang/react-next-app
   tasks:
     - name: clone-repository
       params:
         - name: url
-          value: https://github.com/yliu138/react-next-app
+          value: https://github.com/kisoongjang/react-next-app
       taskRef:
         kind: Task
         name: git-clone
@@ -37,24 +37,24 @@ spec:
             - clean-install
       runAfter:
         - clone-repository
-    # - name: run-tests
-    #   taskRef:
-    #     name: npm
-    #   workspaces:
-    #     - name: source
-    #       workspace: pipeline-shared-data
-    #   params:
-    #     - name: ARGS
-    #       value:
-    #         - test
-    #   runAfter:
-    #     - install-dependencies
+    - name: run-tests
+      taskRef:
+        name: npm
+      workspaces:
+        - name: source
+          workspace: pipeline-shared-data
+      params:
+        - name: ARGS
+          value:
+            - test
+      runAfter:
+        - install-dependencies
     - name: build-image
       runAfter:
         - install-dependencies
       params:
         - name: IMAGE
-          value: "$(params.image-repo):$(tasks.clone-repository.results.commit)"
+          value: '$(params.image-repo):$(tasks.clone-repository.results.commit)'
       taskRef:
         kind: Task
         name: buildah
@@ -66,7 +66,7 @@ spec:
         - build-image
       params:
         - name: image-with-tag
-          value: "$(params.image-repo)=$(params.image-repo):$(tasks.clone-repository.results.commit)"
+          value: '$(params.image-repo)=$(params.image-repo):$(tasks.clone-repository.results.commit)'
       taskRef:
         kind: Task
         name: kustomize-build
@@ -78,7 +78,7 @@ spec:
         - kustomize-build
       params:
         - name: app-namespace
-          value: leo-liu-pipeline-from-scratch
+          value: kisoong-jang-pipeline-from-scratch
         - name: app-name
           value: kisoong-leo-assignment
       taskRef:

@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: namespace
-      value: leo-liu-pipeline-from-scratch
+      value: kisoong-jang-pipeline-from-scratch
     - name: gitrepositoryurl
       value: $(body.repository.url)
     - name: gitrepositoryname

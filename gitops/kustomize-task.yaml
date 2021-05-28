@@ -9,7 +9,7 @@ spec:
   params:
     - name: image-with-tag
       type: string
-      default: "iamge:tag"
+      default: 'iamge:tag'
   steps:
     - name: kustomize-build
       image: docker.io/enzobarrett/kustomize:latest
@@ -17,7 +17,7 @@ spec:
         #!/bin/sh
         cd source/k8s
         kustomize edit set image $(params.image-with-tag)
-        kustomize build > manifests.yaml       
+        kustomize build > manifests.yaml
         if [ -f manifests.yaml ]; then
           echo "---"
           cat manifests.yaml
